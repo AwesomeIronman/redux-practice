@@ -4,7 +4,7 @@ export const initialState = {
     iceCreamCount: 0
 }
 
-function reducer(state = initialState, { type }) {
+function reducer(state = initialState, { type, payload }) {
     switch (type) {
         case actionTypes.BUY_ICE_CREAM: {
             return {
@@ -21,6 +21,12 @@ function reducer(state = initialState, { type }) {
         case actionTypes.RESET_ICE_CREAM: {
             return {
                 iceCreamCount: 0,
+            }
+        }
+
+        case actionTypes.ICE_CREAM_LOADED: {
+            return {
+                iceCreamCount: state.iceCreamCount + payload
             }
         }
     

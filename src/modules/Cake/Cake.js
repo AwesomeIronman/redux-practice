@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { buyCake, sellCake, reset } from './redux/actions'
+import { buyCake, sellCake, reset, fetchCakes } from './redux/actions'
 
 function mapStateToProps(state) {
   return {
@@ -12,11 +12,12 @@ const mapDispatchToProps = {
   increment: buyCake,
   decrement: sellCake,
   reset,
+  fetchCakes
 };
 
 class Cake extends Component {
   render() {
-    const { count, increment, decrement, reset } = this.props;
+    const { count, increment, decrement, reset, fetchCakes } = this.props;
     return (
       <>
         <h2>Cake:</h2>
@@ -25,6 +26,7 @@ class Cake extends Component {
           <button onClick={increment}>Buy</button>
           <button onClick={decrement}>Sell</button>
           <button onClick={reset}>Reset</button>
+          <button onClick={fetchCakes}>Fetch Cakes</button>
         </div>
       </>
     );

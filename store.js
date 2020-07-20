@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 
 import cakeReducer from './src/modules/Cake/redux/reducer'
 import { negativeCountMiddleware as negativeCake } from './src/modules/Cake/redux/middleware'
@@ -13,6 +14,6 @@ export const store = createStore(
     iceCream: iceCreamReducer,
   }),
   storeEnhancers(
-    applyMiddleware(negativeCake, negativeIceCream)
+    applyMiddleware(negativeCake, negativeIceCream, thunk)
   )
 );
