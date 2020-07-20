@@ -1,12 +1,18 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
 import cakeReducer from './src/modules/Cake/redux/reducer'
+import { negativeCountMiddleware as negativeCake } from './src/modules/Cake/redux/middleware'
+import { negativeCountMiddleware as negativeIceCream } from './src/modules/IceCream/redux/middleware'
 import iceCreamReducer from './src/modules/IceCream/redux/reducer'
+
+const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
   combineReducers({
     cake: cakeReducer,
     iceCream: iceCreamReducer,
   }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  storeEnhancers(
+    applyMiddleware(negativeCake, negativeIceCream)
+  )
 );
